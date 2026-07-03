@@ -11,4 +11,9 @@
 
     <!-- Splash screen colors -->
     <color name="splash_background">#2563EB</color>
+
+    <!-- Adaptive launcher icon background (brand blue).
+         The adaptive foreground/background vectors provide the gradient; this
+         flat token is the fallback tint for legacy launchers. -->
+    <color name="ic_launcher_background">#2563EB</color>
 </resources>

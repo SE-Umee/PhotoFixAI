@@ -11,6 +11,7 @@ import com.umeetech.photofixai.di.AppContainer
 import com.umeetech.photofixai.domain.model.HistoryItem
 import com.umeetech.photofixai.domain.model.ToolType
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 
 /**
@@ -18,6 +19,14 @@ import kotlinx.coroutines.withContext
  * History (Room). Always runs on IO so the main thread stays smooth.
  */
 object ExportSupport {
+
+    /**
+     * The export quality the user selected in Settings (Standard/High/Maximum).
+     * Tools that don't have their own quality logic (e.g. compression targets)
+     * should resolve their save quality through this so the setting is honored.
+     */
+    suspend fun currentQuality(container: AppContainer): Int =
+        container.settingsRepository.settings.first().exportQuality.quality
 
     suspend fun exportAndRecord(
         context: Context,

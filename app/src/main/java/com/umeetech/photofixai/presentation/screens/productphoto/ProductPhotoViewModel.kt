@@ -108,8 +108,9 @@ class ProductPhotoViewModel(private val container: AppContainer) : ViewModel() {
             _state.value = _state.value.copy(status = ToolStatus.Exporting)
             val bmp = withContext(Dispatchers.Default) { buildProduct() }
             if (bmp == null) { _state.value = _state.value.copy(status = ToolStatus.Error(AppError.ExportFailed)); return@launch }
+            val quality = ExportSupport.currentQuality(container)
             when (val res = ExportSupport.exportAndRecord(
-                context, container, bmp, ExportFormat.JPG, Constants.DEFAULT_EXPORT_QUALITY, ToolType.PRODUCT_PHOTO
+                context, container, bmp, ExportFormat.JPG, quality, ToolType.PRODUCT_PHOTO
             )) {
                 is Resource.Success -> { _state.value = _state.value.copy(status = ToolStatus.ExportSuccess, exported = true); onDone() }
                 is Resource.Error -> _state.value = _state.value.copy(status = ToolStatus.Error(res.error))

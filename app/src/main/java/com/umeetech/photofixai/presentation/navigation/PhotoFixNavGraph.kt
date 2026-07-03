@@ -87,6 +87,7 @@ fun PhotoFixNavGraph(navController: NavHostController = rememberNavController())
             composable(Routes.HOME) {
                 HomeScreen(
                     onOpenTool = { tool -> navController.navigate(Routes.forTool(tool)) },
+                    onOpenAllTools = { navController.navigateToTab(Routes.TOOLS) },
                     onOpenSettings = { navController.navigate(Routes.SETTINGS) },
                     onOpenPremium = { navController.navigateToTab(Routes.PREMIUM) },
                     onOpenHistoryItem = { navController.navigateToTab(Routes.HISTORY) }

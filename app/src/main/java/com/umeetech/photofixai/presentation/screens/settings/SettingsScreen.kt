@@ -36,6 +36,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.umeetech.photofixai.BuildConfig
+import com.umeetech.photofixai.R
 import com.umeetech.photofixai.core.export.ExportFormat
 import com.umeetech.photofixai.di.rememberScopedViewModel
 import com.umeetech.photofixai.domain.model.ExportQuality
@@ -90,8 +91,12 @@ fun SettingsScreen(onBack: () -> Unit, onOpenPremium: () -> Unit) {
             Spacer(Modifier.height(Dimens.SpaceL))
             SectionHeader(title = "About & legal")
             Spacer(Modifier.height(Dimens.SpaceS))
-            SettingsRow(Icons.Filled.PrivacyTip, "Privacy Policy") { context.openUrl("https://photofixai.app/privacy") }
-            SettingsRow(Icons.Filled.Description, "Terms & Conditions") { context.openUrl("https://photofixai.app/terms") }
+            SettingsRow(Icons.Filled.PrivacyTip, "Privacy Policy") {
+                context.openUrl(context.getString(R.string.privacy_policy_url))
+            }
+            SettingsRow(Icons.Filled.Description, "Terms & Conditions") {
+                context.openUrl(context.getString(R.string.terms_url))
+            }
             SettingsRow(Icons.Filled.StarRate, "Rate App") {
                 context.openUrl("https://play.google.com/store/apps/details?id=${context.packageName}")
             }
@@ -174,7 +179,7 @@ private fun android.content.Context.shareApp() {
 
 private fun android.content.Context.emailSupport() {
     val intent = Intent(Intent.ACTION_SENDTO).apply {
-        data = Uri.parse("mailto:support@photofixai.app")
+        data = Uri.parse("mailto:${getString(R.string.support_email)}")
         putExtra(Intent.EXTRA_SUBJECT, "PhotoFix AI Support")
     }
     runCatching { startActivity(intent) }

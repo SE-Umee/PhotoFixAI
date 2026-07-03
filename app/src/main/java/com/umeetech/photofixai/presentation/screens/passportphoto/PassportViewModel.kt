@@ -122,8 +122,9 @@ class PassportViewModel(private val container: AppContainer) : ViewModel() {
             if (bitmap == null) {
                 _state.value = _state.value.copy(status = ToolStatus.Error(AppError.ExportFailed)); return@launch
             }
+            val quality = ExportSupport.currentQuality(container)
             when (val res = ExportSupport.exportAndRecord(
-                context, container, bitmap, ExportFormat.JPG, Constants.DEFAULT_EXPORT_QUALITY, ToolType.PASSPORT_PHOTO
+                context, container, bitmap, ExportFormat.JPG, quality, ToolType.PASSPORT_PHOTO
             )) {
                 is Resource.Success -> { _state.value = _state.value.copy(status = ToolStatus.ExportSuccess, exported = true); onDone() }
                 is Resource.Error -> _state.value = _state.value.copy(status = ToolStatus.Error(res.error))

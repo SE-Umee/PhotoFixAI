@@ -115,8 +115,9 @@ class ResizeViewModel(private val container: AppContainer) : ViewModel() {
         viewModelScope.launch {
             val resized = withContext(Dispatchers.Default) { buildResized() } ?: return@launch
             _state.value = _state.value.copy(status = ToolStatus.Exporting)
+            val quality = ExportSupport.currentQuality(container)
             when (val res = ExportSupport.exportAndRecord(
-                context, container, resized, _state.value.format, Constants.DEFAULT_EXPORT_QUALITY, ToolType.RESIZE
+                context, container, resized, _state.value.format, quality, ToolType.RESIZE
             )) {
                 is Resource.Success -> {
                     _state.value = _state.value.copy(status = ToolStatus.ExportSuccess, exported = true)

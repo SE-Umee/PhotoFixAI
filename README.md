@@ -62,6 +62,17 @@ Selected in `di/AppContainer.backgroundRemovalStrategy`:
 
 ```
 ./gradlew assembleDebug
-./gradlew test          # unit tests (pure logic + use cases)
+./gradlew assembleRelease   # R8 + resource shrinking (Play Store build)
+./gradlew test              # unit tests (pure logic + use cases)
 ```
-# PhotoFixAI
+
+## Brand assets
+
+The launcher icon and in-app logo share one brandmark (a white photo card with an
+AI sparkle on a blue gradient):
+
+- `res/drawable/ic_app_logo.xml` — full gradient badge (in-app logo)
+- `res/drawable/ic_app_logo_foreground.xml` / `ic_app_logo_background.xml` — adaptive launcher icon
+- `res/drawable/ic_app_splash_logo.xml` — splash mark
+- `res/mipmap-*/ic_launcher*.png` — legacy raster icons (API < 26)
+- `presentation/components/AppLogo.kt` — reusable `AppLogo` / `AppLogoMark` / `AppLogoWordmark`

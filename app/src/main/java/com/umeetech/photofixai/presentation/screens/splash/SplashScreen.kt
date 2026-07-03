@@ -15,10 +15,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AutoFixHigh
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,6 +33,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.umeetech.photofixai.di.rememberScopedViewModel
+import com.umeetech.photofixai.presentation.components.AppLogoMark
 import com.umeetech.photofixai.presentation.theme.BrandPrimary
 import com.umeetech.photofixai.presentation.theme.BrandPrimaryDark
 import kotlinx.coroutines.delay
@@ -95,12 +93,7 @@ fun SplashScreen(
                     .background(Color.White.copy(alpha = 0.15f)),
                 contentAlignment = Alignment.Center
             ) {
-                Icon(
-                    Icons.Filled.AutoFixHigh,
-                    contentDescription = null,
-                    tint = Color.White,
-                    modifier = Modifier.size(60.dp)
-                )
+                AppLogoMark(size = 76.dp)
             }
             Text(
                 "PhotoFix AI",

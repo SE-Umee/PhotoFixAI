@@ -155,7 +155,7 @@ class BackgroundRemoverViewModel(private val container: AppContainer) : ViewMode
         val bitmap = exportBitmap() ?: return
         viewModelScope.launch {
             _state.value = _state.value.copy(status = ToolStatus.Exporting)
-            val quality = container.settingsRepository.let { com.umeetech.photofixai.core.constants.Constants.DEFAULT_EXPORT_QUALITY }
+            val quality = ExportSupport.currentQuality(container)
             when (val res = ExportSupport.exportAndRecord(
                 context, container, bitmap, _state.value.exportFormat, quality, ToolType.BACKGROUND_REMOVER
             )) {

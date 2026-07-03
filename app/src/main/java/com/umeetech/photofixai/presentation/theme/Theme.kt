@@ -31,7 +31,18 @@ private val LightColors = lightColorScheme(
     outline = BorderColor,
     outlineVariant = BorderColor,
     error = ErrorColor,
-    onError = Color.White
+    onError = Color.White,
+    // Surface-container tokens MUST be set explicitly: M3 components such as
+    // NavigationBar, ModalBottomSheet, dialogs and dropdown menus read these,
+    // and their defaults are purple-tinted baseline neutrals that clash with
+    // the brand (they made the bottom bar look pink).
+    surfaceBright = SurfaceLight,
+    surfaceDim = Color(0xFFE2E8F0),
+    surfaceContainerLowest = Color(0xFFFFFFFF),
+    surfaceContainerLow = Color(0xFFFFFFFF),
+    surfaceContainer = Color(0xFFFFFFFF),
+    surfaceContainerHigh = Color(0xFFFFFFFF),
+    surfaceContainerHighest = SurfaceVariantLight
 )
 
 private val DarkColors = darkColorScheme(
@@ -53,7 +64,15 @@ private val DarkColors = darkColorScheme(
     outline = BorderColorDark,
     outlineVariant = BorderColorDark,
     error = ErrorColor,
-    onError = Color.White
+    onError = Color.White,
+    // Same fix for dark mode: keep containers in the brand slate family.
+    surfaceBright = Color(0xFF273449),
+    surfaceDim = BackgroundDark,
+    surfaceContainerLowest = Color(0xFF060B15),
+    surfaceContainerLow = SurfaceDark,
+    surfaceContainer = SurfaceDark,
+    surfaceContainerHigh = SurfaceVariantDark,
+    surfaceContainerHighest = Color(0xFF273449)
 )
 
 /**
