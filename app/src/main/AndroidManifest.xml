@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Internet is only needed for the FUTURE production API mode. It is a
+         normal (non-dangerous) permission and does not require a runtime prompt. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Android 13+ (API 33) scoped media read. The modern Photo Picker used by
+         this app generally needs NO permission at all; these are declared only
+         as a fallback for older APIs / direct MediaStore reads. -->
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_IMAGES"
+        tools:targetApi="33" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <!-- Saving to the shared gallery on API <= 28 requires WRITE_EXTERNAL_STORAGE.
+         On API 29+ we use scoped storage via MediaStore (no permission needed). -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
+    <application
+        android:name=".PhotoFixApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PhotoFixAI">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.PhotoFixAI.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Secure sharing of exported images with other apps. -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <!-- ================================================================
+             ADMOB APPLICATION ID (kept commented until ads are enabled).
+             Uncomment and replace with your real AdMob App ID, then add the
+             play-services-ads dependency in build.gradle.kts. See AdsManager.
+             <meta-data
+                 android:name="com.google.android.gms.ads.APPLICATION_ID"
+                 android:value="ca-app-pub-xxxxxxxxxxxxxxxx~yyyyyyyyyy" />
+             ================================================================ -->
+
+    </application>
+
+</manifest>

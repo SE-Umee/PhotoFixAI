@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">PhotoFix AI</string>
+    <string name="app_tagline">Remove backgrounds. Resize. Compress. Done.</string>
+
+    <!-- File provider authority label -->
+    <string name="file_provider_authority">com.umeetech.photofixai.fileprovider</string>
+
+    <!-- Support / legal placeholders (replace before publishing) -->
+    <string name="support_email">support@photofixai.app</string>
+    <string name="privacy_policy_url">https://photofixai.app/privacy</string>
+    <string name="terms_url">https://photofixai.app/terms</string>
+</resources>

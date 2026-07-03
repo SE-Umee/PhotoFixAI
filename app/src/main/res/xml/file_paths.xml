@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paths exposed by the FileProvider for secure sharing of exported images. -->
+<paths>
+    <cache-path name="cache_images" path="images/" />
+    <cache-path name="shared" path="shared/" />
+    <external-cache-path name="external_cache" path="." />
+    <external-files-path name="external_files" path="." />
+    <files-path name="internal_files" path="." />
+</paths>

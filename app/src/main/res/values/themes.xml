@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. Compose drives the actual UI colors; this is
+         used only for the window background before Compose is attached. -->
+    <style name="Theme.PhotoFixAI" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/brand_background</item>
+        <item name="android:statusBarColor">@color/brand_background</item>
+    </style>
+
+    <!-- Splash screen theme powered by androidx.core:core-splashscreen.
+         Shown for the brief cold-start window before the Compose splash. -->
+    <style name="Theme.PhotoFixAI.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/Theme.PhotoFixAI</item>
+    </style>
+</resources>
